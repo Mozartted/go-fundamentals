@@ -29,10 +29,7 @@ func TestSearch(t *testing.T) {
 
 	t.Run("Fail in getting the value", func(t *testing.T) {
 		dictionary := Dictionary{"test": "this is just a test"}
-
 		_, error := dictionary.Search("flow")
-
 		assertError(t, error, ErrNotFound)
-		// assertStrings(t, got, want)
 	})
 }
