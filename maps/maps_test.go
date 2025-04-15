@@ -18,7 +18,7 @@ func TestSearch(t *testing.T) {
 	}
 
 	t.Run("Get the value successfully", func(t *testing.T) {
-		dictionary := Dictionary{"test": "this is just a test"}
+		dictionary := Dictionary{"test": "this is just a test", "test2": "section 2"}
 
 		got, _ := dictionary.Search("test")
 
@@ -29,7 +29,25 @@ func TestSearch(t *testing.T) {
 
 	t.Run("Fail in getting the value", func(t *testing.T) {
 		dictionary := Dictionary{"test": "this is just a test"}
-		_, error := dictionary.Search("flow")
-		assertError(t, error, ErrNotFound)
+		if _, error := dictionary.Search("flow"); error != nil {
+			assertError(t, error, ErrNotFound)
+		}
+	})
+
+	t.Run("Add to Dictionary", func(t *testing.T) {
+		dictionary := Dictionary{"test": "condensation flow"}
+
+		dictionary.Push("title", "value")
+
+		got, error := dictionary.Search("title")
+		if error != nil {
+			t.Fatal(error.Error())
+		}
+
+		want := "value"
+
+		if got != want {
+			t.Errorf("got %s, want %s", got, want)
+		}
 	})
 }

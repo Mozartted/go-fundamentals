@@ -15,3 +15,7 @@ func (d *Dictionary) Search(key string) (string, error) {
 
 	return value, nil
 }
+
+func (d *Dictionary) Push(key string, value string) {
+	(*d)[key] = value
+}
