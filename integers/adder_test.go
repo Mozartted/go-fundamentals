@@ -1,8 +1,12 @@
 package integers
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestAdder(t *testing.T) {
+	defer fmt.Println("end of call")
 	sum := Add(2, 2)
 	expected := 4
 
